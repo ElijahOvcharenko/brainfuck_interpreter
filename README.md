@@ -1,6 +1,9 @@
 # brainfuck_interpreter
 Brainfuck interpreter written on C++
 
+### Warning!
+This version is built on int array (note: not char) so every cell could be from int_min to int_max respectively.
+Max quantity of cells is 3000.
 
 ### How to build?
 First of all clone or download project.
