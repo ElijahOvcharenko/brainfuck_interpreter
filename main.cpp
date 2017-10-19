@@ -53,8 +53,14 @@ public:
                 }
                 case '[':{
                     if (!this->memory_[memoryIndex]) {
-                        while(this->commands_[index] != ']') {
+                        int bracketsCounter = 1;
+                        while(bracketsCounter > 0) {
                             ++index;
+                            if (this->commands_[index] == '[') {
+                                ++bracketsCounter;
+                            } else if (this->commands_[index] == ']') {
+                                --bracketsCounter;
+                            }
                         }
                     } else {
                         indexOfStratingLoop.push_back(index);
@@ -107,6 +113,7 @@ int main(int argc, char* argv[]) {
     }
     BrainfuckInterpreter bfInterpreter(codeString);
     bfInterpreter.begin();
+
     std::cout << std::endl;
     return 0;
 }
