@@ -95,11 +95,15 @@ public:
 std::string readFile(const std::string& fileName) {
     std::fstream file(fileName);
     std::string str;
+    if (file.is_open()) {
+        copy(
+                std::istream_iterator<char>(file),
+                std::istream_iterator<char>(),
+                std::insert_iterator<std::string>(str,str.begin()));
+    } else {
+        std::cout << " File don't exist";
+    }
 
-    copy(
-            std::istream_iterator<char>(file),
-            std::istream_iterator<char>(),
-            std::insert_iterator<std::string>(str,str.begin()));
     return str;
 }
 
